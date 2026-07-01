@@ -31,6 +31,11 @@
       "description": "Developed a simple 2D platformer game using Java."
     }
   ],
+  "socialLinks": [
+    { "name": "Github", "url": "https://github.com/pauljohn495" },
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/john-paul-tagalog-2168873a3" },
+    { "name": "Facebook", "url": "https://www.facebook.com/johnpaul.terigtagalog" }
+  ],
   "personalProjects": [
     {
       "title": "Blood Connect",
