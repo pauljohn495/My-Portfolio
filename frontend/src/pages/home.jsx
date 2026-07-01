@@ -9,7 +9,7 @@ import ccna2 from '../assets/routing.jpeg'
 const projectImages = import.meta.glob('../assets/*.{jpg,jpeg,png,webp}', { eager: true })
 
 const Home = () => {
-  const { techStack, skillLevels, experienceTimeline, personalProjects, socialLinks } = portfolioData
+  const { techStack, skillLevels, experienceTimeline, personalProjects, socialLinks, certificates } = portfolioData
   const [activeProject, setActiveProject] = useState(null)
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [activeCertificate, setActiveCertificate] = useState(null)
@@ -73,25 +73,25 @@ const Home = () => {
 
   return (
     <div className={`min-h-screen font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#121212] text-gray-100' : 'bg-[#f5f5f5] text-black'}`}>
-      <div className={`mx-auto w-[900px] border shadow-sm ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-200 bg-white'}`}>
-        <div className={`relative flex h-[180px] items-center justify-between border-b px-6 ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-100 bg-white'}`}>
+      <div className={`mx-auto w-full max-w-[900px] border shadow-sm ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-200 bg-white'}`}>
+        <div className={`relative flex flex-col gap-4 border-b px-4 py-6 sm:h-[180px] sm:flex-row sm:items-center sm:justify-between sm:px-6 ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-100 bg-white'}`}>
           <Button
             type="button"
             variant="outline"
             size="icon-sm"
             onClick={() => setIsDarkMode((current) => !current)}
-            className={`absolute right-6 top-4 ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
+            className={`absolute right-4 top-4 sm:right-6 ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
             aria-label="Toggle dark mode"
           >
             {isDarkMode ? '☀️' : '🌙'}
           </Button>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-6">
             <img
               src={profile}
               alt="Profile"
-              className="h-[150px] w-[150px] rounded-2xl border border-gray-100 object-cover"
+              className="h-[120px] w-[120px] rounded-2xl border border-gray-100 object-cover sm:h-[150px] sm:w-[150px]"
             />
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center text-center sm:text-left">
               <h1 className="text-2xl font-bold">John Paul T. Tagalog</h1>
               <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Programmer</p>
               <div className="mt-1 flex items-center gap-1.5">
@@ -103,14 +103,14 @@ const Home = () => {
                   johnpaultagalog@gmail.com
                 </a>
               </div>
-              <p className={`mt-4 max-w-xl text-center text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              <p className={`mt-4 max-w-xl text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 I am an IT student focused on building <br></br> web apps and improving my full-stack skills.
               </p>
             </div>
           </div>
-          <div className="absolute bottom-4 right-6 flex flex-col items-end gap-2">
+          <div className="mt-2 flex flex-col items-center gap-2 sm:absolute sm:bottom-4 sm:right-6 sm:mt-0 sm:items-end">
             <p className={`text-[10px] font-semibold uppercase tracking-[0.25em] ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Social</p>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap justify-center gap-2 sm:justify-end">
               {socialLinks.map((social) => (
                 <Button
                   key={social.name}
@@ -128,8 +128,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className={`grid grid-cols-[2fr_1fr] grid-rows-1 border-b ${borderClass}`}>
-          <div className={`border-r border-b p-5 ${borderClass}`}>
+        <div className={`grid gap-0 border-b lg:grid-cols-[2fr_1fr] lg:grid-rows-1 ${borderClass}`}>
+          <div className={`border-b p-5 lg:border-r ${borderClass}`}>
             <div className="flex items-center justify-between">
               <h1 className="text-2xl font-bold">Tech Stack</h1>
               <span className={`rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] ${softBadgeClass}`}>
@@ -167,7 +167,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className={`row-span-1 flex h-full flex-col border-b p-5 ${borderClass}`}>
+          <div className={`flex h-full flex-col border-b p-5 ${borderClass}`}>
             <h1 className="text-2xl font-bold">Experience</h1>
             <div className={`mt-5 max-h-[260px] flex-1 min-h-0 space-y-6 overflow-y-auto pr-2 text-sm ${bodyTextClass}`}>
               {experienceTimeline.map((item, index) => (
@@ -186,7 +186,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className={`border-r p-5 ${borderClass}`}>
+          <div className={`border-b p-5 lg:border-r ${borderClass}`}>
             <h1 className="text-2xl font-bold">Skills</h1>
             <div className={`mt-5 space-y-5 text-sm ${bodyTextClass}`}>
               {skillLevels.map((skill) => (
@@ -203,35 +203,33 @@ const Home = () => {
             </div>
           </div>
 
-          <div className={`row-span-1 p-5 ${borderClass}`}>
+          <div className={`p-5 ${borderClass}`}>
             <h1 className="text-2xl font-bold">Certificates</h1>
             <div className="mt-5 space-y-3">
-              <Button
-                type="button"
-                onClick={() => openCertificateModal({ title: 'CCNA: Introduction to Networks', image: ccna })}
-                className={`${isDarkMode ? 'border-white bg-white text-black hover:bg-black hover:text-white' : 'border-black bg-black text-white hover:bg-white hover:text-black'}`}
-              >
-                CCNA: Introduction to Networks
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => openCertificateModal({ title: 'CCNA: Switching, Routing', image: ccna2 })}
-                className={`${isDarkMode ? 'border-white bg-[#1f1f1f] text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
-              >
-                CCNA: Switching, Routing
-              </Button>
+              {certificates.map((certificate, index) => (
+                <Button
+                  key={certificate.title}
+                  type="button"
+                  variant={index === 0 ? 'default' : 'outline'}
+                  onClick={() => openCertificateModal(certificate)}
+                  className={index === 0
+                    ? `${isDarkMode ? 'border-white bg-white text-black hover:bg-black hover:text-white' : 'border-black bg-black text-white hover:bg-white hover:text-black'}`
+                    : `${isDarkMode ? 'border-white bg-[#1f1f1f] text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
+                >
+                  {certificate.title}
+                </Button>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="px-5 pb-8">
-          <div className="mt-5 flex items-center justify-between">
+        <div className="px-4 pb-8 sm:px-5">
+          <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <h1 className="text-2xl font-bold">Personal Projects</h1>
             <p className={`text-sm ${mutedTextClass}`}>Selected work</p>
           </div>
 
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
             {personalProjects.map((project) => (
               <button
                 key={project.title}

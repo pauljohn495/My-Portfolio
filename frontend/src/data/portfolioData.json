@@ -36,6 +36,16 @@
     { "name": "LinkedIn", "url": "https://www.linkedin.com/in/john-paul-tagalog-2168873a3" },
     { "name": "Facebook", "url": "https://www.facebook.com/johnpaul.terigtagalog" }
   ],
+  "certificates": [
+    {
+      "title": "CCNA: Introduction to Networks",
+      "image": "../assets/introduction.jpeg"
+    },
+    {
+      "title": "CCNA: Switching, Routing",
+      "image": "../assets/routing.jpeg"
+    }
+  ],
   "personalProjects": [
     {
       "title": "Blood Connect",
