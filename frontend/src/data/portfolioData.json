@@ -1,0 +1,68 @@
+{
+  "techStack": {
+    "frontend": ["React", "Javascript", "Tailwind CSS", "ShadCN UI", "HTML", "CSS", "FrankenUI"],
+    "backend": ["Node.js", "Express", "MongoDB", "MySQL", "PHP", "Supabase"],
+    "cloud": ["Vercel", "Netlify", "AWS", "Render", "Github"]
+  },
+  "skillLevels": [
+    { "title": "Frontend", "level": 50 },
+    { "title": "Backend", "level": 30 },
+    { "title": "DevOps & Cloud", "level": 50 }
+  ],
+  "experienceTimeline": [
+    {
+      "date": "2025",
+      "title": "Full Stack Developer",
+      "description": "Developed a full-stack application using React and Node.js."
+    },
+    {
+      "date": "2024",
+      "title": "Full Stack Developer",
+      "description": "Developed a full-stack application using PHP and MySQL."
+    },
+    {
+      "date": "2023",
+      "title": "Game Developer",
+      "description": "Developed a simple 2D platformer game using Java."
+    },
+        {
+      "date": "2022",
+      "title": "Game Developer",
+      "description": "Developed a simple 2D platformer game using Java."
+    }
+  ],
+  "personalProjects": [
+    {
+      "title": "Blood Connect",
+      "type": "Full Stack Web App",
+      "description": "A blood management system with predictive analytics and prescriptive insights for Red Cross operations.",
+      "image": "../assets/project.jpg",
+      "images": ["../assets/project.jpg", "../assets/2x2.jpg"],
+      "stack": ["React", "MySQL", "Tailwind CSS", "Node.js"]
+    },
+    {
+      "title": "BukSU SSC Student Information & Publication Portal",
+      "type": "Student Portal",
+      "description": "A centralized platform for student information, announcements, and publications with a clean academic experience.",
+      "image": "../assets/project.jpg",
+      "images": ["../assets/project.jpg", "../assets/2x2.jpg"],
+      "stack": ["React", "MongoDB", "Tailwind CSS", "Node.js"]  
+    },
+    {
+      "title": "BukSU Library Reservation",
+      "type": "Reservation System",
+      "description": "A web-based system for reserving library resources and managing booking requests efficiently.",
+      "image": "../assets/project.jpg",
+      "images": ["../assets/project.jpg", "../assets/2x2.jpg"],
+      "stack": ["PHP", "MySQL", "Bootstrap"]
+    },
+    {
+      "title": "RentRide",
+      "type": "SaaS Platform",
+      "description": "A modern car rental platform designed for seamless booking and vehicle management.",
+      "image": "../assets/project.jpg",
+      "images": ["../assets/project.jpg", "../assets/2x2.jpg"],
+      "stack": ["React", "Express", "MongoDB", "Node.js", "JavaScript"]
+    }
+  ]
+}
