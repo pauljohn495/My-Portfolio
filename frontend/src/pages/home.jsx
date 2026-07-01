@@ -94,7 +94,7 @@ const Home = () => {
             <div className="flex flex-col justify-center text-center sm:text-left">
               <h1 className="text-2xl font-bold">John Paul T. Tagalog</h1>
               <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Programmer</p>
-              <div className="mt-1 flex items-center gap-1.5">
+              <div className="mt-1 flex items-center justify-center gap-1.5 sm:justify-start">
                 <span className={`text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>✉️</span>
                 <a
                   href="mailto:johnpaultagalog@gmail.com"
