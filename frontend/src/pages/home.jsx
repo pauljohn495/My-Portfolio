@@ -268,7 +268,7 @@ const Home = () => {
           </div>
 
           <div className="mt-5 hidden sm:block">
-            <div className={`max-h-[calc(4*17rem+3*1rem)] overflow-y-auto pr-2 ${isDarkMode ? 'scrollbar-thin scrollbar-thumb-gray-700' : ''}`}>
+            <div className={`h-[40rem] overflow-y-auto pr-2 ${isDarkMode ? 'scrollbar-thin scrollbar-thumb-gray-700' : ''}`}>
               <div className="grid gap-4 md:grid-cols-2">
                 {personalProjects.map((project) => (
                   <div key={project.title} className="min-w-0">
