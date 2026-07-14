@@ -70,15 +70,13 @@ const Home = () => {
   const panelClass = isDarkMode ? 'border-gray-700 bg-[#1f1f1f]' : 'border-gray-200 bg-white'
   const pillClass = isDarkMode ? 'border-gray-600 bg-gray-800 text-gray-200' : 'border-gray-300 bg-white text-gray-700'
   const softBadgeClass = isDarkMode ? 'border-gray-600 bg-gray-800/80 text-gray-300' : 'border-black/10 bg-black/5 text-gray-600'
-  const featuredProjects = personalProjects.slice(0, 4)
-  const overflowProjects = personalProjects.slice(4)
 
   const renderProjectCard = (project) => (
     <button
       key={project.title}
       type="button"
       onClick={() => openProjectModal(project)}
-      className={`flex h-full min-h-[320px] flex-col rounded-2xl border p-5 text-left transition duration-200 hover:-translate-y-1 hover:shadow-sm focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-300 bg-gray-50 focus:ring-black/20'}`}
+      className={`flex h-full min-h-[280px] w-full flex-col rounded-2xl border p-5 text-left transition duration-200 hover:-translate-y-1 hover:shadow-sm focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-300 bg-gray-50 focus:ring-black/20'}`}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -270,23 +268,21 @@ const Home = () => {
           </div>
 
           <div className="mt-5 hidden sm:block">
-            <div className="grid gap-4 md:grid-cols-2">
-              {featuredProjects.map((project) => renderProjectCard(project))}
-            </div>
-
-            {overflowProjects.length > 0 && (
-              <div className={`mt-4 max-h-[360px] overflow-y-auto pr-2 ${isDarkMode ? 'scrollbar-thin scrollbar-thumb-gray-700' : ''}`}>
-                <div className="grid gap-4 md:grid-cols-2">
-                  {overflowProjects.map((project) => renderProjectCard(project))}
-                </div>
+            <div className={`max-h-[calc(4*17rem+3*1rem)] overflow-y-auto pr-2 ${isDarkMode ? 'scrollbar-thin scrollbar-thumb-gray-700' : ''}`}>
+              <div className="grid gap-4 md:grid-cols-2">
+                {personalProjects.map((project) => (
+                  <div key={project.title} className="min-w-0">
+                    {renderProjectCard(project)}
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
           </div>
 
           <div className="mt-5 block sm:hidden">
             <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 scroll-smooth">
               {personalProjects.map((project) => (
-                <div key={project.title} className="w-[calc(50%-0.375rem)] shrink-0 snap-start">
+                <div key={project.title} className="w-[calc(50%-0.375rem)] min-w-[12rem] shrink-0 snap-start">
                   {renderProjectCard(project)}
                 </div>
               ))}
