@@ -10,25 +10,30 @@
     { "title": "DevOps & Cloud", "level": 50 }
   ],
   "experienceTimeline": [
+        {
+      "date": "2025",
+      "title": "3rd Year College - 2nd Semester",
+      "description": "Developed a full-stack application for RedCross using React and Node.js."
+    },
     {
       "date": "2025",
-      "title": "Full Stack Developer",
+      "title": "3rd Year College - 1st Semester",
       "description": "Developed a full-stack application using React and Node.js."
     },
     {
       "date": "2024",
-      "title": "Full Stack Developer",
+      "title": "2nd Year College - 2nd Semester",
       "description": "Developed a full-stack application using PHP and MySQL."
     },
     {
       "date": "2023",
-      "title": "Game Developer",
+      "title": "2nd Year College - 1st Semester",
       "description": "Developed a simple 2D platformer game using Java."
     },
         {
       "date": "2022",
-      "title": "Game Developer",
-      "description": "Developed a simple 2D platformer game using Java."
+      "title": "1st Year College",
+      "description": "Developed a simple C program for the SSC ."
     }
   ],
   "socialLinks": [
