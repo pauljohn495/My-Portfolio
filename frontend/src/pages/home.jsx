@@ -94,7 +94,7 @@ const Home = () => {
         className={`mt-4 h-40 w-full rounded-xl border object-cover ${borderClass}`}
       />
 
-      <p className={`mt-3 text-sm leading-6 ${bodyTextClass}`}>{project.description}</p>
+      <p className={`mt-3 line-clamp-2 text-sm leading-6 ${bodyTextClass}`}>{project.description}</p>
 
       <div className="mt-4 flex flex-wrap gap-2">
         {project.stack.map((tech) => (
