@@ -76,12 +76,12 @@ const Home = () => {
       key={project.title}
       type="button"
       onClick={() => openProjectModal(project)}
-      className={`flex h-full min-h-[280px] w-full flex-col rounded-2xl border p-5 text-left transition duration-200 hover:-translate-y-1 hover:shadow-sm focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-300 bg-gray-50 focus:ring-black/20'}`}
+      className={`flex h-full min-h-[240px] w-full flex-col rounded-2xl border p-4 text-left transition duration-200 hover:-translate-y-1 hover:shadow-sm focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-300 bg-gray-50 focus:ring-black/20'}`}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className={`text-[10px] uppercase tracking-[0.25em] ${mutedTextClass}`}>{project.type}</p>
-          <h2 className={`mt-2 text-lg font-semibold ${headingTextClass}`}>{project.title}</h2>
+          <h2 className={`mt-2 text-base font-semibold ${headingTextClass}`}>{project.title}</h2>
         </div>
         <span className="rounded-full border border-black bg-black px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
           Featured
@@ -91,16 +91,16 @@ const Home = () => {
       <img
         src={getProjectImage(project.image)}
         alt={project.title}
-        className={`mt-4 h-40 w-full rounded-xl border object-cover ${borderClass}`}
+        className={`mt-3 h-32 w-full rounded-xl border object-cover ${borderClass}`}
       />
 
-      <p className={`mt-3 line-clamp-2 text-sm leading-6 ${bodyTextClass}`}>{project.description}</p>
+      <p className={`mt-2 line-clamp-2 text-xs leading-5 ${bodyTextClass}`}>{project.description}</p>
 
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
         {project.stack.map((tech) => (
           <span
             key={tech}
-            className={`rounded-full border px-2.5 py-1 text-[11px] font-medium ${pillClass}`}
+            className={`rounded-full border px-2 py-1 text-[10px] font-medium ${pillClass}`}
           >
             {tech}
           </span>
@@ -282,7 +282,7 @@ const Home = () => {
           <div className="mt-5 block sm:hidden">
             <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 scroll-smooth">
               {personalProjects.map((project) => (
-                <div key={project.title} className="w-[calc(50%-0.375rem)] min-w-[12rem] shrink-0 snap-start">
+                <div key={project.title} className="w-full min-w-[14rem] shrink-0 snap-start">
                   {renderProjectCard(project)}
                 </div>
               ))}
