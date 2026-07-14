@@ -70,6 +70,46 @@ const Home = () => {
   const panelClass = isDarkMode ? 'border-gray-700 bg-[#1f1f1f]' : 'border-gray-200 bg-white'
   const pillClass = isDarkMode ? 'border-gray-600 bg-gray-800 text-gray-200' : 'border-gray-300 bg-white text-gray-700'
   const softBadgeClass = isDarkMode ? 'border-gray-600 bg-gray-800/80 text-gray-300' : 'border-black/10 bg-black/5 text-gray-600'
+  const featuredProjects = personalProjects.slice(0, 4)
+  const overflowProjects = personalProjects.slice(4)
+
+  const renderProjectCard = (project) => (
+    <button
+      key={project.title}
+      type="button"
+      onClick={() => openProjectModal(project)}
+      className={`flex h-full min-h-[320px] flex-col rounded-2xl border p-5 text-left transition duration-200 hover:-translate-y-1 hover:shadow-sm focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-300 bg-gray-50 focus:ring-black/20'}`}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className={`text-[10px] uppercase tracking-[0.25em] ${mutedTextClass}`}>{project.type}</p>
+          <h2 className={`mt-2 text-lg font-semibold ${headingTextClass}`}>{project.title}</h2>
+        </div>
+        <span className="rounded-full border border-black bg-black px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
+          Featured
+        </span>
+      </div>
+
+      <img
+        src={getProjectImage(project.image)}
+        alt={project.title}
+        className={`mt-4 h-40 w-full rounded-xl border object-cover ${borderClass}`}
+      />
+
+      <p className={`mt-3 text-sm leading-6 ${bodyTextClass}`}>{project.description}</p>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {project.stack.map((tech) => (
+          <span
+            key={tech}
+            className={`rounded-full border px-2.5 py-1 text-[11px] font-medium ${pillClass}`}
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+    </button>
+  )
 
   return (
     <div className={`min-h-screen font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#121212] text-gray-100' : 'bg-[#f5f5f5] text-black'}`}>
@@ -229,44 +269,28 @@ const Home = () => {
             <p className={`text-sm ${mutedTextClass}`}>Selected work</p>
           </div>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            {personalProjects.map((project) => (
-              <button
-                key={project.title}
-                type="button"
-                onClick={() => openProjectModal(project)}
-                className={`rounded-2xl border p-5 text-left transition duration-200 hover:-translate-y-1 hover:shadow-sm focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-300 bg-gray-50 focus:ring-black/20'}`}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className={`text-[10px] uppercase tracking-[0.25em] ${mutedTextClass}`}>{project.type}</p>
-                    <h2 className={`mt-2 text-lg font-semibold ${headingTextClass}`}>{project.title}</h2>
-                  </div>
-                  <span className="rounded-full border border-black bg-black px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
-                    Featured
-                  </span>
+          <div className="mt-5 hidden sm:block">
+            <div className="grid gap-4 md:grid-cols-2">
+              {featuredProjects.map((project) => renderProjectCard(project))}
+            </div>
+
+            {overflowProjects.length > 0 && (
+              <div className={`mt-4 max-h-[360px] overflow-y-auto pr-2 ${isDarkMode ? 'scrollbar-thin scrollbar-thumb-gray-700' : ''}`}>
+                <div className="grid gap-4 md:grid-cols-2">
+                  {overflowProjects.map((project) => renderProjectCard(project))}
                 </div>
+              </div>
+            )}
+          </div>
 
-                <img
-                  src={getProjectImage(project.image)}
-                  alt={project.title}
-                  className={`mt-4 h-40 w-full rounded-xl border object-cover ${borderClass}`}
-                />
-
-                <p className={`mt-3 text-sm leading-6 ${bodyTextClass}`}>{project.description}</p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className={`rounded-full border px-2.5 py-1 text-[11px] font-medium ${pillClass}`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
+          <div className="mt-5 block sm:hidden">
+            <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-3 scroll-smooth">
+              {personalProjects.map((project) => (
+                <div key={project.title} className="w-[calc(50%-0.375rem)] shrink-0 snap-start">
+                  {renderProjectCard(project)}
                 </div>
-              </button>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
