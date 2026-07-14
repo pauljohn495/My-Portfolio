@@ -78,6 +78,14 @@
       "image": "../assets/project.jpg",
       "images": ["../assets/project.jpg", "../assets/2x2.jpg"],
       "stack": ["React", "Express", "MongoDB", "Node.js", "JavaScript"]
+    },
+        {
+      "title": "The Adventure - Platformer Game",
+      "type": "Platformer Game",
+      "description": "A classic 2D platformer game featuring exciting levels, challenging obstacles, and action-packed adventures.",
+      "image": "../assets/project.jpg",
+      "images": ["../assets/project.jpg", "../assets/2x2.jpg"],
+      "stack": ["Java", "Java Swing", "Java AWT", "Eclipse", "OOP"]
     }
   ]
 }
