@@ -132,9 +132,9 @@ const Home = () => {
               className="h-[116px] w-[116px] rounded-2xl border-4 border-white/80 object-cover shadow-lg shadow-black/10 dark:border-gray-700 sm:h-[148px] sm:w-[148px]"
             />
             <div className="flex flex-col justify-center text-center sm:text-left">
-              <p className={`mb-1 text-[10px] font-bold uppercase tracking-[0.28em] ${isDarkMode ? 'text-sky-300' : 'text-sky-700'}`}>IT student · portfolio</p>
+              <p className={`mb-1 text-[10px] font-bold uppercase tracking-[0.28em] ${isDarkMode ? 'text-sky-300' : 'text-sky-700'}`}>Portfolio</p>
               <h1 className="text-3xl font-bold tracking-tight">John Paul T. Tagalog</h1>
-              <p className={`mt-1 text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Full-stack developer in progress</p>
+              <p className={`mt-1 text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Full-stack developer </p>
               <div className="mt-2 flex items-center justify-center gap-1.5 sm:justify-start">
                 <Mail className={`size-3.5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
                 <a
@@ -145,7 +145,7 @@ const Home = () => {
                 </a>
               </div>
               <p className={`mt-4 max-w-xl text-sm leading-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                I build practical web experiences and keep sharpening my <br></br> full-stack craft, one thoughtful project at a time.
+I'm an Information Technology student passionate about building practical <br></br> and user-friendly applications. I enjoy creating projects, learning new <br></br> technologies, and continuously improving my skills as a developer.
               </p>
             </div>
           </div>
