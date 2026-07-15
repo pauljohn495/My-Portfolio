@@ -63,21 +63,21 @@ const Home = () => {
 
   const certificateImage = (imagePath) => getProjectImage(imagePath)
 
-  const borderClass = isDarkMode ? 'border-gray-700' : 'border-gray-100'
-  const mutedTextClass = isDarkMode ? 'text-gray-400' : 'text-gray-500'
-  const bodyTextClass = isDarkMode ? 'text-gray-300' : 'text-gray-600'
-  const headingTextClass = isDarkMode ? 'text-gray-100' : 'text-gray-900'
-  const cardClass = isDarkMode ? 'border-gray-700 bg-[#222222]' : 'border-gray-200 bg-gray-50'
-  const panelClass = isDarkMode ? 'border-gray-700 bg-[#1f1f1f]' : 'border-gray-200 bg-white'
-  const pillClass = isDarkMode ? 'border-gray-600 bg-gray-800 text-gray-200' : 'border-gray-300 bg-white text-gray-700'
-  const softBadgeClass = isDarkMode ? 'border-gray-600 bg-gray-800/80 text-gray-300' : 'border-black/10 bg-black/5 text-gray-600'
+  const borderClass = isDarkMode ? 'border-slate-700/70' : 'border-gray-100'
+  const mutedTextClass = isDarkMode ? 'text-slate-400' : 'text-gray-500'
+  const bodyTextClass = isDarkMode ? 'text-slate-300' : 'text-gray-600'
+  const headingTextClass = isDarkMode ? 'text-slate-50' : 'text-gray-900'
+  const cardClass = isDarkMode ? 'border-slate-700/70 bg-slate-800/55 shadow-sm shadow-black/20' : 'border-gray-200 bg-gray-50'
+  const panelClass = isDarkMode ? 'border-slate-700/70 bg-slate-900/70' : 'border-gray-200 bg-white'
+  const pillClass = isDarkMode ? 'border-slate-600/80 bg-slate-950/35 text-slate-200' : 'border-gray-300 bg-white text-gray-700'
+  const softBadgeClass = isDarkMode ? 'border-sky-400/25 bg-sky-400/10 text-sky-200' : 'border-black/10 bg-black/5 text-gray-600'
 
   const renderProjectCard = (project) => (
     <button
       key={project.title}
       type="button"
       onClick={() => openProjectModal(project)}
-      className={`group flex h-full min-h-[260px] w-full flex-col rounded-2xl border p-4 text-left transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-200 bg-gray-50 focus:ring-black/20'}`}
+      className={`group flex h-full min-h-[260px] w-full flex-col rounded-2xl border p-4 text-left transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 focus:outline-none focus:ring-2 ${isDarkMode ? 'border-slate-700/70 bg-slate-800/55 hover:border-sky-400/35 hover:bg-slate-800 focus:ring-sky-300/40' : 'border-gray-200 bg-gray-50 focus:ring-black/20'}`}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -111,16 +111,16 @@ const Home = () => {
   )
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#101113] text-gray-100' : 'bg-[#f2f3f5] text-black'}`}>
-      <div className="fixed inset-x-0 top-0 -z-0 h-72 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400/15 via-transparent to-transparent dark:from-sky-300/10" />
-      <div className={`relative z-10 mx-auto w-full max-w-[1040px] border shadow-[0_24px_70px_-35px_rgba(0,0,0,0.32)] md:my-8 md:rounded-[2rem] ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-200 bg-white'}`}>
-        <div className={`relative flex flex-col gap-5 border-b px-5 py-7 sm:min-h-[210px] sm:flex-row sm:items-center sm:px-8 ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-100 bg-white'} md:rounded-t-[2rem]`}>
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#09111f] text-slate-100' : 'bg-[#f2f3f5] text-black'}`}>
+      <div className="fixed inset-x-0 top-0 -z-0 h-80 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400/15 via-transparent to-transparent dark:from-sky-400/20" />
+      <div className={`relative z-10 mx-auto w-full max-w-[1040px] border shadow-[0_24px_70px_-35px_rgba(0,0,0,0.32)] md:my-8 md:rounded-[2rem] ${isDarkMode ? 'border-slate-700/80 bg-slate-900/95 shadow-black/50' : 'border-gray-200 bg-white'}`}>
+        <div className={`relative flex flex-col gap-5 border-b px-5 py-7 sm:min-h-[210px] sm:flex-row sm:items-center sm:px-8 ${isDarkMode ? 'border-slate-700/70 bg-slate-900/70' : 'border-gray-100 bg-white'} md:rounded-t-[2rem]`}>
           <Button
             type="button"
             variant="outline"
             size="icon-sm"
             onClick={() => setIsDarkMode((current) => !current)}
-            className={`absolute right-4 top-4 sm:right-6 ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
+            className={`absolute right-4 top-4 sm:right-6 ${isDarkMode ? 'border-slate-600 bg-slate-800 text-sky-100 hover:border-sky-300 hover:bg-sky-300 hover:text-slate-950' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
             aria-label="Toggle dark mode"
           >
             {isDarkMode ? <Sun className="size-4" /> : <Moon className="size-4" />}
@@ -158,7 +158,7 @@ const Home = () => {
                   asChild
                   variant="outline"
                   size="sm"
-                  className={`${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
+                  className={`${isDarkMode ? 'border-slate-600 bg-slate-800/70 text-slate-100 hover:border-sky-300 hover:bg-sky-300 hover:text-slate-950' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
                 >
                   <a href={normalizeUrl(social.url)} target="_blank" rel="noreferrer">
                     {social.name}<ArrowUpRight className="size-3" />
@@ -214,9 +214,9 @@ const Home = () => {
               {experienceTimeline.map((item, index) => (
                 <div key={item.date} className="relative pl-6">
                   {index < experienceTimeline.length - 1 && (
-                    <div className={`absolute bottom-[-1.25rem] left-[5px] top-4 w-px ${isDarkMode ? 'bg-gray-600' : 'bg-gray-300'}`} />
+                    <div className={`absolute bottom-[-1.25rem] left-[5px] top-4 w-px ${isDarkMode ? 'bg-slate-700' : 'bg-gray-300'}`} />
                   )}
-                  <div className={`absolute left-0 top-2 h-3 w-3 rounded-full border-2 ${isDarkMode ? 'border-gray-200 bg-[#1f1f1f]' : 'border-black bg-white'}`} />
+                  <div className={`absolute left-0 top-2 h-3 w-3 rounded-full border-2 ${isDarkMode ? 'border-sky-300 bg-slate-900 shadow-[0_0_0_4px_rgba(14,165,233,0.1)]' : 'border-black bg-white'}`} />
                   <div className="ml-2">
                     <p className={`text-xs uppercase tracking-[0.2em] ${mutedTextClass}`}>{item.date}</p>
                     <p className={`mt-1 font-semibold ${headingTextClass}`}>{item.title}</p>
@@ -236,8 +236,8 @@ const Home = () => {
                     <p className={`font-medium ${headingTextClass}`}>{skill.title}</p>
                     <p className={`text-sm ${mutedTextClass}`}>{skill.level}%</p>
                   </div>
-                  <div className={`mt-2 h-2 rounded-full ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
-                    <div className={`h-full rounded-full ${isDarkMode ? 'bg-white' : 'bg-black'}`} style={{ width: `${skill.level}%` }} />
+                  <div className={`mt-2 h-2 rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-gray-200'}`}>
+                    <div className={`h-full rounded-full ${isDarkMode ? 'bg-gradient-to-r from-sky-400 to-cyan-200' : 'bg-black'}`} style={{ width: `${skill.level}%` }} />
                   </div>
                 </div>
               ))}
@@ -254,8 +254,8 @@ const Home = () => {
                   variant={index === 0 ? 'default' : 'outline'}
                   onClick={() => openCertificateModal(certificate)}
                   className={index === 0
-                    ? `${isDarkMode ? 'border-white bg-white text-black hover:bg-black hover:text-white' : 'border-black bg-black text-white hover:bg-white hover:text-black'}`
-                    : `${isDarkMode ? 'border-white bg-[#1f1f1f] text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
+                    ? `${isDarkMode ? 'border-sky-300 bg-sky-300 text-slate-950 shadow-lg shadow-sky-950/40 hover:bg-sky-200' : 'border-black bg-black text-white hover:bg-white hover:text-black'}`
+                    : `${isDarkMode ? 'border-slate-600 bg-slate-800/70 text-slate-100 hover:border-sky-300 hover:bg-slate-800' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
                 >
                   {certificate.title}
                 </Button>
@@ -296,11 +296,11 @@ const Home = () => {
 
       {activeCertificate && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6">
-          <div className={`relative w-full max-w-3xl rounded-3xl border p-4 shadow-2xl sm:p-6 ${isDarkMode ? 'border-gray-700 bg-[#1f1f1f]' : 'border-gray-300 bg-white'}`}>
+          <div className={`relative w-full max-w-3xl rounded-3xl border p-4 shadow-2xl sm:p-6 ${isDarkMode ? 'border-slate-700 bg-slate-900 shadow-black/60' : 'border-gray-300 bg-white'}`}>
             <button
               type="button"
               onClick={closeCertificateModal}
-              className={`absolute right-4 top-4 rounded-full border p-2 transition ${isDarkMode ? 'border-gray-600 bg-[#2a2a2a] text-gray-200 hover:bg-gray-700' : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-100'}`}
+              className={`absolute right-4 top-4 rounded-full border p-2 transition ${isDarkMode ? 'border-slate-600 bg-slate-800 text-slate-200 hover:border-sky-300 hover:bg-slate-700' : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-100'}`}
               aria-label="Close certificate modal"
             >
               ✕
@@ -322,11 +322,11 @@ const Home = () => {
 
       {activeProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6">
-          <div className={`relative w-full max-w-4xl rounded-3xl border p-4 shadow-2xl sm:p-6 ${isDarkMode ? 'border-gray-700 bg-[#1f1f1f]' : 'border-gray-300 bg-white'}`}>
+          <div className={`relative w-full max-w-4xl rounded-3xl border p-4 shadow-2xl sm:p-6 ${isDarkMode ? 'border-slate-700 bg-slate-900 shadow-black/60' : 'border-gray-300 bg-white'}`}>
             <button
               type="button"
               onClick={closeProjectModal}
-              className={`absolute right-4 top-4 rounded-full border p-2 transition ${isDarkMode ? 'border-gray-600 bg-[#2a2a2a] text-gray-200 hover:bg-gray-700' : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-100'}`}
+              className={`absolute right-4 top-4 rounded-full border p-2 transition ${isDarkMode ? 'border-slate-600 bg-slate-800 text-slate-200 hover:border-sky-300 hover:bg-slate-700' : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-100'}`}
               aria-label="Close project modal"
             >
               ✕
@@ -334,7 +334,7 @@ const Home = () => {
 
             <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
               <div>
-                <div className={`overflow-hidden rounded-2xl border ${isDarkMode ? 'border-gray-700 bg-[#2a2a2a]' : 'border-gray-300 bg-gray-100'}`}>
+                <div className={`overflow-hidden rounded-2xl border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-gray-300 bg-gray-100'}`}>
                   <img
                     src={projectGallery[activeImageIndex]}
                     alt={`${activeProject.title} preview ${activeImageIndex + 1}`}
