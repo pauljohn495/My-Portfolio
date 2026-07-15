@@ -19,7 +19,13 @@
   }
   body {
     @apply bg-background text-foreground;
+    min-width: 320px;
+    text-rendering: optimizeLegibility;
   }
+}
+
+::selection {
+  background: rgb(14 165 233 / 0.22);
 }
 
 @theme inline {

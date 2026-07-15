@@ -2,8 +2,7 @@
 import profile from '../assets/2x2.jpg'
 import { Button } from '../components/ui/button'
 import portfolioData from '../data/portfolioData.json'
-import ccna from '../assets/introduction.jpeg'
-import ccna2 from '../assets/routing.jpeg'
+import { ArrowUpRight, BriefcaseBusiness, Code2, GraduationCap, Mail, Moon, Sun } from 'lucide-react'
 
 
 const projectImages = import.meta.glob('../assets/*.{jpg,jpeg,png,webp}', { eager: true })
@@ -62,6 +61,8 @@ const Home = () => {
     return /^https?:\/\//i.test(url) ? url : `https://${url}`
   }
 
+  const certificateImage = (imagePath) => getProjectImage(imagePath)
+
   const borderClass = isDarkMode ? 'border-gray-700' : 'border-gray-100'
   const mutedTextClass = isDarkMode ? 'text-gray-400' : 'text-gray-500'
   const bodyTextClass = isDarkMode ? 'text-gray-300' : 'text-gray-600'
@@ -76,25 +77,25 @@ const Home = () => {
       key={project.title}
       type="button"
       onClick={() => openProjectModal(project)}
-      className={`flex h-full min-h-[240px] w-full flex-col rounded-2xl border p-4 text-left transition duration-200 hover:-translate-y-1 hover:shadow-sm focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-300 bg-gray-50 focus:ring-black/20'}`}
+      className={`group flex h-full min-h-[260px] w-full flex-col rounded-2xl border p-4 text-left transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5 focus:outline-none focus:ring-2 ${isDarkMode ? 'border-gray-700 bg-[#222222] focus:ring-gray-500' : 'border-gray-200 bg-gray-50 focus:ring-black/20'}`}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className={`text-[10px] uppercase tracking-[0.25em] ${mutedTextClass}`}>{project.type}</p>
           <h2 className={`mt-2 text-base font-semibold ${headingTextClass}`}>{project.title}</h2>
         </div>
-        <span className="rounded-full border border-black bg-black px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
-          Featured
+        <span className={`rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] transition ${isDarkMode ? 'border-gray-600 text-gray-300 group-hover:border-sky-300 group-hover:text-sky-200' : 'border-gray-300 text-gray-600 group-hover:border-sky-500 group-hover:text-sky-700'}`}>
+          View work
         </span>
       </div>
 
       <img
         src={getProjectImage(project.image)}
         alt={project.title}
-        className={`mt-3 h-32 w-full rounded-xl border object-cover ${borderClass}`}
+        className={`mt-4 h-32 w-full rounded-xl border object-cover transition duration-500 group-hover:scale-[1.01] ${borderClass}`}
       />
 
-      <p className={`mt-2 line-clamp-2 text-xs leading-5 ${bodyTextClass}`}>{project.description}</p>
+      <p className={`mt-3 line-clamp-2 text-xs leading-5 ${bodyTextClass}`}>{project.description}</p>
 
       <div className="mt-3 flex flex-wrap gap-2">
         {project.stack.map((tech) => (
@@ -110,9 +111,10 @@ const Home = () => {
   )
 
   return (
-    <div className={`min-h-screen font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#121212] text-gray-100' : 'bg-[#f5f5f5] text-black'}`}>
-      <div className={`mx-auto w-full max-w-[900px] border shadow-sm ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-200 bg-white'}`}>
-        <div className={`relative flex flex-col gap-4 border-b px-4 py-6 sm:h-[180px] sm:flex-row sm:items-center sm:justify-between sm:px-6 ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-100 bg-white'}`}>
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${isDarkMode ? 'bg-[#101113] text-gray-100' : 'bg-[#f2f3f5] text-black'}`}>
+      <div className="fixed inset-x-0 top-0 -z-0 h-72 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400/15 via-transparent to-transparent dark:from-sky-300/10" />
+      <div className={`relative z-10 mx-auto w-full max-w-[1040px] border shadow-[0_24px_70px_-35px_rgba(0,0,0,0.32)] md:my-8 md:rounded-[2rem] ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-200 bg-white'}`}>
+        <div className={`relative flex flex-col gap-5 border-b px-5 py-7 sm:min-h-[210px] sm:flex-row sm:items-center sm:px-8 ${isDarkMode ? 'border-gray-700 bg-[#181818]' : 'border-gray-100 bg-white'} md:rounded-t-[2rem]`}>
           <Button
             type="button"
             variant="outline"
@@ -121,19 +123,20 @@ const Home = () => {
             className={`absolute right-4 top-4 sm:right-6 ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
             aria-label="Toggle dark mode"
           >
-            {isDarkMode ? '☀️' : '🌙'}
+            {isDarkMode ? <Sun className="size-4" /> : <Moon className="size-4" />}
           </Button>
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-6">
             <img
               src={profile}
               alt="Profile"
-              className="h-[120px] w-[120px] rounded-2xl border border-gray-100 object-cover sm:h-[150px] sm:w-[150px]"
+              className="h-[116px] w-[116px] rounded-2xl border-4 border-white/80 object-cover shadow-lg shadow-black/10 dark:border-gray-700 sm:h-[148px] sm:w-[148px]"
             />
             <div className="flex flex-col justify-center text-center sm:text-left">
-              <h1 className="text-2xl font-bold">John Paul T. Tagalog</h1>
-              <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Programmer</p>
-              <div className="mt-1 flex items-center justify-center gap-1.5 sm:justify-start">
-                <span className={`text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>✉️</span>
+              <p className={`mb-1 text-[10px] font-bold uppercase tracking-[0.28em] ${isDarkMode ? 'text-sky-300' : 'text-sky-700'}`}>IT student · portfolio</p>
+              <h1 className="text-3xl font-bold tracking-tight">John Paul T. Tagalog</h1>
+              <p className={`mt-1 text-sm font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Full-stack developer in progress</p>
+              <div className="mt-2 flex items-center justify-center gap-1.5 sm:justify-start">
+                <Mail className={`size-3.5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} />
                 <a
                   href="mailto:johnpaultagalog@gmail.com"
                   className={`text-xs transition-colors ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-500 hover:text-black'}`}
@@ -141,13 +144,13 @@ const Home = () => {
                   johnpaultagalog@gmail.com
                 </a>
               </div>
-              <p className={`mt-4 max-w-xl text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                I am an IT student focused on building <br></br> web apps and improving my full-stack skills.
+              <p className={`mt-4 max-w-xl text-sm leading-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                I build practical web experiences and keep sharpening my full-stack craft, one thoughtful project at a time.
               </p>
             </div>
           </div>
           <div className="mt-2 flex flex-col items-center gap-2 sm:absolute sm:bottom-4 sm:right-6 sm:mt-0 sm:items-end">
-            <p className={`text-[10px] font-semibold uppercase tracking-[0.25em] ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Social</p>
+            <p className={`text-[10px] font-semibold uppercase tracking-[0.25em] ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Find me online</p>
             <div className="flex flex-wrap justify-center gap-2 sm:justify-end">
               {socialLinks.map((social) => (
                 <Button
@@ -158,7 +161,7 @@ const Home = () => {
                   className={`${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black bg-white text-black hover:bg-black hover:text-white'}`}
                 >
                   <a href={normalizeUrl(social.url)} target="_blank" rel="noreferrer">
-                    {social.name}
+                    {social.name}<ArrowUpRight className="size-3" />
                   </a>
                 </Button>
               ))}
@@ -169,7 +172,7 @@ const Home = () => {
         <div className={`grid gap-0 border-b lg:grid-cols-[2fr_1fr] lg:grid-rows-1 ${borderClass}`}>
           <div className={`border-b p-5 lg:border-r ${borderClass}`}>
             <div className="flex items-center justify-between">
-              <h1 className="text-2xl font-bold">Tech Stack</h1>
+              <div className="flex items-center gap-2"><Code2 className="size-5 text-sky-600 dark:text-sky-300" /><h1 className="text-2xl font-bold tracking-tight">Tech Stack</h1></div>
               <span className={`rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] ${softBadgeClass}`}>
                 Core tools
               </span>
@@ -206,7 +209,7 @@ const Home = () => {
           </div>
 
           <div className={`flex h-full flex-col border-b p-5 ${borderClass}`}>
-            <h1 className="text-2xl font-bold">Experience</h1>
+            <div className="flex items-center gap-2"><BriefcaseBusiness className="size-5 text-sky-600 dark:text-sky-300" /><h1 className="text-2xl font-bold tracking-tight">Experience</h1></div>
             <div className={`mt-5 max-h-[260px] flex-1 min-h-0 space-y-6 overflow-y-auto pr-2 text-sm ${bodyTextClass}`}>
               {experienceTimeline.map((item, index) => (
                 <div key={item.date} className="relative pl-6">
@@ -225,7 +228,7 @@ const Home = () => {
           </div>
 
           <div className={`border-b p-5 lg:border-r ${borderClass}`}>
-            <h1 className="text-2xl font-bold">Skills</h1>
+            <h1 className="text-2xl font-bold tracking-tight">Skills</h1>
             <div className={`mt-5 space-y-5 text-sm ${bodyTextClass}`}>
               {skillLevels.map((skill) => (
                 <div key={skill.title}>
@@ -242,7 +245,7 @@ const Home = () => {
           </div>
 
           <div className={`p-5 ${borderClass}`}>
-            <h1 className="text-2xl font-bold">Certificates</h1>
+            <div className="flex items-center gap-2"><GraduationCap className="size-5 text-sky-600 dark:text-sky-300" /><h1 className="text-2xl font-bold tracking-tight">Certificates</h1></div>
             <div className="mt-5 space-y-3">
               {certificates.map((certificate, index) => (
                 <Button
@@ -263,8 +266,8 @@ const Home = () => {
 
         <div className="px-4 pb-8 sm:px-5">
           <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <h1 className="text-2xl font-bold">Personal Projects</h1>
-            <p className={`text-sm ${mutedTextClass}`}>Selected work</p>
+            <div><p className={`text-[10px] font-bold uppercase tracking-[0.25em] ${isDarkMode ? 'text-sky-300' : 'text-sky-700'}`}>Case studies</p><h1 className="mt-1 text-2xl font-bold tracking-tight">Personal Projects</h1></div>
+            <p className={`text-sm ${mutedTextClass}`}>Click a project to explore</p>
           </div>
 
           <div className="mt-5 hidden sm:block">
@@ -308,7 +311,7 @@ const Home = () => {
                 <h2 className={`mt-2 text-2xl font-semibold ${headingTextClass}`}>{activeCertificate.title}</h2>
               </div>
               <img
-                src={activeCertificate.image}
+                src={certificateImage(activeCertificate.image)}
                 alt={activeCertificate.title}
                 className="max-h-[70vh] w-full rounded-2xl object-contain"
               />
