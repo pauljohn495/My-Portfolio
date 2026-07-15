@@ -145,7 +145,7 @@ const Home = () => {
                 </a>
               </div>
               <p className={`mt-4 max-w-xl text-sm leading-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                I build practical web experiences and keep sharpening my full-stack craft, one thoughtful project at a time.
+                I build practical web experiences and keep sharpening my <br></br> full-stack craft, one thoughtful project at a time.
               </p>
             </div>
           </div>
