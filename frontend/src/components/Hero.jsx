@@ -8,7 +8,7 @@ function Hero({ profile, socialLinks }) {
   return (
     <section className="hero" id="home" aria-labelledby="hero-title">
       <div className="hero-grid page-shell">
-        <div className="hero-copy reveal">
+        <div className="hero-copy anime-hero-copy">
           <p className="eyebrow">Hello, I&apos;m</p>
           <h1 id="hero-title">John Paul<span>Tagalog</span></h1>
           <p className="hero-role">{profile.title}</p>
@@ -22,11 +22,12 @@ function Hero({ profile, socialLinks }) {
             {linkedin && <a href={linkedin.url} target="_blank" rel="noreferrer"><Network aria-hidden="true" /> LinkedIn</a>}
           </div>
         </div>
-        <div className="hero-portrait-wrap reveal reveal--delay">
+        <div className="hero-portrait-wrap anime-portrait">
           <div className="portrait-grid" aria-hidden="true" />
           <p className="portrait-label portrait-label--top">Build with purpose</p>
           <p className="portrait-label portrait-label--bottom">Based in the Philippines</p>
           <div className="portrait-frame"><img src={profileImage} alt="John Paul Tagalog" width="900" height="900" fetchPriority="high" /></div>
+          <div className="portrait-status"><span aria-hidden="true" /> Open to opportunities</div>
           <a className="portrait-link" href="#about">About me <ArrowUpRight aria-hidden="true" /></a>
         </div>
       </div>

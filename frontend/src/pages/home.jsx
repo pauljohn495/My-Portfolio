@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { animate, stagger } from 'animejs'
 import portfolioData from '../data/portfolioData.json'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
@@ -30,6 +31,40 @@ function Home() {
   const closeProject = useCallback(() => setActiveProject(null), [])
   const closeCertificate = useCallback(() => setActiveCertificate(null), [])
   const technologyCount = useMemo(() => new Set(Object.values(techStack).flat()).size, [techStack])
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+
+    const heroCopyAnimation = animate('.anime-hero-copy > *', {
+      opacity: { from: 0 },
+      y: { from: 24 },
+      duration: 720,
+      delay: stagger(75, { start: 100 }),
+      ease: 'out(3)',
+    })
+
+    const portraitAnimation = animate('.anime-portrait .portrait-frame', {
+      opacity: { from: 0 },
+      x: { from: -28 },
+      scale: { from: 0.96 },
+      duration: 900,
+      delay: 160,
+      ease: 'out(4)',
+    })
+
+    const portraitDetailsAnimation = animate('.anime-portrait .portrait-label, .anime-portrait .portrait-status, .anime-portrait .portrait-link', {
+      opacity: { from: 0 },
+      duration: 520,
+      delay: stagger(70, { start: 520 }),
+      ease: 'out(3)',
+    })
+
+    return () => {
+      heroCopyAnimation.revert()
+      portraitAnimation.revert()
+      portraitDetailsAnimation.revert()
+    }
+  }, [])
 
   useEffect(() => {
     const elements = document.querySelectorAll('.reveal')
