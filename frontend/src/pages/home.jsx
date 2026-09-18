@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useState } from 'react'
-import profile from '../assets/2x2.jpg'
+import profile from '../assets/2x2.png'
 import { Button } from '../components/ui/button'
 import portfolioData from '../data/portfolioData.json'
 import { ArrowUpRight, BriefcaseBusiness, Code2, GraduationCap, Mail, Moon, Sun } from 'lucide-react'
