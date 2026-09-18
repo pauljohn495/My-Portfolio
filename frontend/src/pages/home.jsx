@@ -52,7 +52,7 @@ function Home() {
       ease: 'out(4)',
     })
 
-    const portraitDetailsAnimation = animate('.anime-portrait .portrait-label, .anime-portrait .portrait-status, .anime-portrait .portrait-link', {
+    const portraitDetailsAnimation = animate('.anime-portrait .portrait-label, .anime-portrait .portrait-link', {
       opacity: { from: 0 },
       duration: 520,
       delay: stagger(70, { start: 520 }),

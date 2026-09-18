@@ -27,7 +27,6 @@ function Hero({ profile, socialLinks }) {
           <p className="portrait-label portrait-label--top">Build with purpose</p>
           <p className="portrait-label portrait-label--bottom">Based in the Philippines</p>
           <div className="portrait-frame"><img src={profileImage} alt="John Paul Tagalog" width="900" height="900" fetchPriority="high" /></div>
-          <div className="portrait-status"><span aria-hidden="true" /> Open to opportunities</div>
           <a className="portrait-link" href="#about">About me <ArrowUpRight aria-hidden="true" /></a>
         </div>
       </div>
