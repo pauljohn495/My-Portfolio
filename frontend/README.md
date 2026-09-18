@@ -1,16 +1,22 @@
-# React + Vite
+# John Paul Tagalog — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dark, responsive developer portfolio built with React and Vite.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Use `npm run build` for a production build and `npm run lint` for code-quality checks.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Updating portfolio content
 
-## Expanding the ESLint configuration
+Projects, skills, certificates, social links, and journey entries are kept in `src/data/portfolioData.json`. Add the relevant image to `src/assets`, import it in `src/pages/home.jsx`, and map its data path in `assetImages` when adding a new visual.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The reusable page sections are in `src/components`, while global design tokens and responsive styles are in `src/index.css`.
+
+## Contact form
+
+The form validates in the browser and prepares an email in the visitor’s configured email application. It does not claim a message was sent without a server-side form provider.
