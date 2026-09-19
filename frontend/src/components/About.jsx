@@ -4,7 +4,7 @@ function About({ projectCount, technologyCount, certificateCount }) {
   const stats = [
     { value: projectCount, label: 'Projects built' },
     { value: technologyCount, label: 'Technologies used' },
-    { value: certificateCount, label: 'Cisco credentials' },
+    { value: certificateCount, label: 'Certificates earned' },
   ]
 
   return (

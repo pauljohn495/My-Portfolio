@@ -97,7 +97,7 @@ function Home() {
         <Process />
         <Contact email={profile.email} socialLinks={socialLinks} />
       </main>
-      <Footer socialLinks={socialLinks} />
+      <Footer socialLinks={socialLinks} email={profile.email} />
       {activeProject && <ProjectModal project={activeProject} image={getImage(activeProject.image)} onClose={closeProject} />}
       {activeCertificate && <CertificateModal certificate={activeCertificate} onClose={closeCertificate} />}
     </>

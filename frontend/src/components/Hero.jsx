@@ -1,9 +1,11 @@
-import { ArrowDown, ArrowUpRight, Code2, Network } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Download } from 'lucide-react'
 import profileImage from '../assets/portrait.jpg'
+import resumePdf from '../assets/TAGALOG_ClassOf2026__issued.pdf'
+import { Button } from '@/components/ui/button'
+import SocialLinks from './SocialLinks'
 
 function Hero({ profile, socialLinks }) {
-  const github = socialLinks.find((link) => link.name === 'GitHub')
-  const linkedin = socialLinks.find((link) => link.name === 'LinkedIn')
+  const featuredSocials = socialLinks.filter((link) => ['GitHub', 'LinkedIn'].includes(link.name))
 
   return (
     <section className="hero" id="home" aria-labelledby="hero-title">
@@ -14,13 +16,11 @@ function Hero({ profile, socialLinks }) {
           <p className="hero-role">{profile.title}</p>
           <p className="hero-intro">{profile.intro}</p>
           <div className="hero-actions">
-            <a className="button button--primary" href="#projects">View my work <ArrowUpRight aria-hidden="true" /></a>
-            <a className="button button--secondary" href="#contact">Contact me</a>
+            <Button asChild size="lg" className="portfolio-button portfolio-button--primary"><a href="#projects">View my work <ArrowUpRight aria-hidden="true" /></a></Button>
+            <Button asChild size="lg" variant="outline" className="portfolio-button"><a href="#contact">Contact me</a></Button>
+            <Button asChild size="lg" variant="ghost" className="portfolio-button portfolio-button--ghost"><a href={resumePdf} download>Download CV <Download aria-hidden="true" /></a></Button>
           </div>
-          <div className="hero-socials" aria-label="Social links">
-            {github && <a href={github.url} target="_blank" rel="noreferrer"><Code2 aria-hidden="true" /> GitHub</a>}
-            {linkedin && <a href={linkedin.url} target="_blank" rel="noreferrer"><Network aria-hidden="true" /> LinkedIn</a>}
-          </div>
+          <SocialLinks links={featuredSocials} className="hero-socials" />
         </div>
         <div className="hero-portrait-wrap anime-portrait">
           <div className="portrait-grid" aria-hidden="true" />

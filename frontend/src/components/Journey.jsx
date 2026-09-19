@@ -16,7 +16,7 @@ function Journey({ timeline, certificates, getImage, onCertificateOpen }) {
             ))}
           </div>
           <aside className="credentials" aria-labelledby="credentials-title">
-            <p className="eyebrow">Credentials</p><h3 id="credentials-title">Cisco networking foundations</h3><p>Certificates earned alongside software development coursework.</p>
+            <p className="eyebrow">Credentials</p><h3 id="credentials-title">Certificates and achievements</h3><p>Certificates earned across different fields through coursework, training, and continuous learning.</p>
             <div className="certificate-list">
               {certificates.map((certificate) => (
                 <button key={certificate.title} type="button" onClick={() => onCertificateOpen({ ...certificate, resolvedImage: getImage(certificate.image) })}>
