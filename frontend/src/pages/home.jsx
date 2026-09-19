@@ -6,6 +6,7 @@ import Hero from '../components/Hero'
 import About from '../components/About'
 import Skills from '../components/Skills'
 import Projects from '../components/Projects'
+import GitHubContributions from '../components/GitHubContributions'
 import ProjectModal from '../components/ProjectModal'
 import Journey from '../components/Journey'
 import CertificateModal from '../components/CertificateModal'
@@ -31,6 +32,7 @@ function Home() {
   const closeProject = useCallback(() => setActiveProject(null), [])
   const closeCertificate = useCallback(() => setActiveCertificate(null), [])
   const technologyCount = useMemo(() => new Set(Object.values(techStack).flat()).size, [techStack])
+  const githubUrl = useMemo(() => socialLinks.find((link) => link.name === 'GitHub')?.url || 'https://github.com/', [socialLinks])
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
@@ -93,6 +95,7 @@ function Home() {
         <About projectCount={personalProjects.length} technologyCount={technologyCount} certificateCount={certificates.length} />
         <Skills techStack={techStack} />
         <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} />
+        <GitHubContributions githubUrl={githubUrl} />
         <Journey timeline={experienceTimeline} certificates={certificates} getImage={getImage} onCertificateOpen={setActiveCertificate} />
         <Process />
         <Contact email={profile.email} socialLinks={socialLinks} />

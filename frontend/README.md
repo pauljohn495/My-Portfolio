@@ -1,6 +1,6 @@
 # John Paul Tagalog — Portfolio
 
-A responsive developer portfolio built with React, Vite, and Anime.js, with persistent light and dark themes.
+A responsive developer portfolio built with React, Vite, Tailwind CSS, shadcn/ui, and Anime.js, with persistent light and dark themes.
 
 ## Local development
 
@@ -10,6 +10,21 @@ npm run dev
 ```
 
 Use `npm run build` for a production build and `npm run lint` for code-quality checks.
+
+## GitHub Activity configuration
+
+The contribution calendar requests `/api/github-contributions`. That Vercel Function calls GitHub’s GraphQL API, so the GitHub token is never included in the browser bundle.
+
+Copy `.env.example` to `.env.local` and configure:
+
+```bash
+GITHUB_USERNAME=pauljohn495
+GITHUB_TOKEN=your_github_personal_access_token
+```
+
+Use `npx vercel dev` when testing the frontend and Vercel Function together locally. Add the same variables in the Vercel project’s Environment Variables settings before deploying. Never prefix the token with `VITE_`.
+
+Successful contribution responses are cached at Vercel’s edge for one hour and can be served stale while they revalidate in the background.
 
 ## Updating portfolio content
 
