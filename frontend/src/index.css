@@ -78,7 +78,7 @@ img { display: block; max-width: 100%; }
 .profile-column { min-width: 0; }
 .profile-sticky { position: sticky; top: 48px; }
 .profile-intro { padding-bottom: 18px; border-bottom: 1px solid var(--border); }
-.profile-avatar { width: 96px; height: 96px; margin-bottom: 17px; border: 1px solid var(--border); border-radius: 50%; object-fit: cover; object-position: center 24%; filter: grayscale(1); }
+.profile-avatar { width: 112px; height: 112px; margin-bottom: 17px; border: 1px solid var(--border); border-radius: 8px; object-fit: cover; object-position: center 24%; filter: grayscale(1); }
 .profile-identity h1 { margin: 0; font-size: 1.08rem; font-weight: 650; letter-spacing: -.02em; }
 .profile-handle { width: fit-content; margin-top: 3px; display: flex; align-items: center; gap: 4px; color: var(--muted); font-size: .78rem; transition: color .18s ease; }
 .profile-handle:hover { color: var(--text); }
@@ -226,8 +226,8 @@ html[data-theme="light"] .contribution-legend i[data-level="4"] { background: #1
   html { scroll-padding-top: 20px; }
   .portfolio-page { grid-template-columns: 1fr; gap: 64px; padding-top: 54px; }
   .profile-sticky { position: static; }
-  .profile-intro { display: grid; grid-template-columns: 82px 1fr; column-gap: 18px; align-items: center; }
-  .profile-avatar { grid-row: 1 / 4; width: 82px; height: 82px; margin: 0; }
+  .profile-intro { display: grid; grid-template-columns: 94px 1fr; column-gap: 18px; align-items: center; }
+  .profile-avatar { grid-row: 1 / 4; width: 94px; height: 94px; margin: 0; }
   .profile-role { margin-top: 5px; }
   .availability { margin-top: 4px; }
   .profile-navigation { margin-top: 14px; }
@@ -260,8 +260,8 @@ html[data-theme="light"] .contribution-legend i[data-level="4"] { background: #1
 
 @media (max-width: 380px) {
   :root { --shell: calc(100% - 24px); }
-  .profile-intro { grid-template-columns: 72px 1fr; column-gap: 14px; }
-  .profile-avatar { width: 72px; height: 72px; }
+  .profile-intro { grid-template-columns: 84px 1fr; column-gap: 14px; }
+  .profile-avatar { width: 84px; height: 84px; }
   .profile-navigation nav a { font-size: .75rem; }
   .contact-links { flex-direction: column; }
   .contact-links a:first-child { overflow-wrap: anywhere; }
