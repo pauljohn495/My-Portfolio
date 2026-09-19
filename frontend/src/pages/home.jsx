@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { flushSync } from 'react-dom'
 import portfolioData from '../data/portfolioData.json'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
@@ -41,18 +42,33 @@ function Home() {
     [socialLinks],
   )
 
-  const navigateTo = useCallback((view) => {
+  const transitionToView = useCallback((view) => {
     if (!validViews.has(view)) return
-    window.history.pushState(null, '', `#${view}`)
-    setActiveView(view)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+
+    const updateView = () => {
+      flushSync(() => setActiveView(view))
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (document.startViewTransition && !reduceMotion) {
+      document.startViewTransition(updateView)
+    } else {
+      updateView()
+    }
   }, [])
 
+  const navigateTo = useCallback((view) => {
+    if (!validViews.has(view) || view === activeView) return
+    window.history.pushState(null, '', `#${view}`)
+    transitionToView(view)
+  }, [activeView, transitionToView])
+
   useEffect(() => {
-    const syncView = () => setActiveView(getInitialView())
+    const syncView = () => transitionToView(getInitialView())
     window.addEventListener('popstate', syncView)
     return () => window.removeEventListener('popstate', syncView)
-  }, [])
+  }, [transitionToView])
 
   return (
     <>
@@ -70,12 +86,14 @@ function Home() {
             {activeView === 'home' && (
               <>
                 <About profile={profile} id="home-overview" />
-                <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} preview onViewAll={() => navigateTo('projects')} />
+                <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} preview onViewAll={() => navigateTo('projects')}>
+                  <GitHubContributions githubUrl={githubUrl} />
+                </Projects>
               </>
             )}
 
             {activeView === 'about' && (
-              <About profile={profile}>
+              <About profile={profile} socialLinks={socialLinks}>
                 <Skills techStack={techStack} />
                 <Credentials certificates={certificates} getImage={getImage} onOpen={setActiveCertificate} />
               </About>
