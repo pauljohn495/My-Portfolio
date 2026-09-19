@@ -1,106 +1,55 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { animate, stagger } from 'animejs'
+import { useCallback, useMemo, useState } from 'react'
 import portfolioData from '../data/portfolioData.json'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import About from '../components/About'
-import Skills from '../components/Skills'
 import Projects from '../components/Projects'
+import GitHubContributions from '../components/GitHubContributions'
 import ProjectModal from '../components/ProjectModal'
-import Journey from '../components/Journey'
-import CertificateModal from '../components/CertificateModal'
-import Process from '../components/Process'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import projectImage from '../assets/project.jpg'
-import introductionCertificate from '../assets/introduction.jpeg'
-import routingCertificate from '../assets/routing.jpeg'
 
 const assetImages = {
   '../assets/project.jpg': projectImage,
-  '../assets/introduction.jpeg': introductionCertificate,
-  '../assets/routing.jpeg': routingCertificate,
 }
 
 function Home() {
-  const { profile, techStack, experienceTimeline, personalProjects, socialLinks, certificates } = portfolioData
+  const { profile, personalProjects, socialLinks } = portfolioData
   const [activeProject, setActiveProject] = useState(null)
-  const [activeCertificate, setActiveCertificate] = useState(null)
 
   const getImage = useCallback((path) => assetImages[path] || projectImage, [])
   const closeProject = useCallback(() => setActiveProject(null), [])
-  const closeCertificate = useCallback(() => setActiveCertificate(null), [])
-  const technologyCount = useMemo(() => new Set(Object.values(techStack).flat()).size, [techStack])
-  const githubUrl = useMemo(() => socialLinks.find((link) => link.name === 'GitHub')?.url || 'https://github.com/', [socialLinks])
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
-
-    const heroCopyAnimation = animate('.anime-hero-copy > *', {
-      opacity: { from: 0 },
-      y: { from: 24 },
-      duration: 720,
-      delay: stagger(75, { start: 100 }),
-      ease: 'out(3)',
-    })
-
-    const portraitAnimation = animate('.anime-portrait .portrait-frame', {
-      opacity: { from: 0 },
-      x: { from: -28 },
-      scale: { from: 0.96 },
-      duration: 900,
-      delay: 160,
-      ease: 'out(4)',
-    })
-
-    const portraitDetailsAnimation = animate('.anime-portrait .portrait-label, .anime-portrait .portrait-link', {
-      opacity: { from: 0 },
-      duration: 520,
-      delay: stagger(70, { start: 520 }),
-      ease: 'out(3)',
-    })
-
-    return () => {
-      heroCopyAnimation.revert()
-      portraitAnimation.revert()
-      portraitDetailsAnimation.revert()
-    }
-  }, [])
-
-  useEffect(() => {
-    const elements = document.querySelectorAll('.reveal')
-    if (!('IntersectionObserver' in window)) {
-      elements.forEach((element) => element.classList.add('is-visible'))
-      return undefined
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
-        }
-      })
-    }, { threshold: 0.12 })
-    elements.forEach((element) => observer.observe(element))
-    return () => observer.disconnect()
-  }, [])
+  const githubUrl = useMemo(
+    () => socialLinks.find((link) => link.name === 'GitHub')?.url || 'https://github.com/',
+    [socialLinks],
+  )
 
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to main content</a>
-      <Navbar />
-      <main id="main-content">
-        <Hero profile={profile} socialLinks={socialLinks} />
-        <About projectCount={personalProjects.length} technologyCount={technologyCount} certificateCount={certificates.length} />
-        <Skills techStack={techStack} />
-        <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} githubUrl={githubUrl} />
-        <Journey timeline={experienceTimeline} certificates={certificates} getImage={getImage} onCertificateOpen={setActiveCertificate} />
-        <Process />
-        <Contact email={profile.email} socialLinks={socialLinks} />
-      </main>
-      <Footer socialLinks={socialLinks} email={profile.email} />
-      {activeProject && <ProjectModal project={activeProject} image={getImage(activeProject.image)} onClose={closeProject} />}
-      {activeCertificate && <CertificateModal certificate={activeCertificate} onClose={closeCertificate} />}
+      <div className="portfolio-page page-shell">
+        <aside className="profile-column" aria-label="Profile and navigation">
+          <div className="profile-sticky">
+            <Hero profile={profile} socialLinks={socialLinks} />
+            <Navbar />
+          </div>
+        </aside>
+
+        <div className="content-column">
+          <main id="main-content">
+            <About profile={profile} />
+            <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} />
+            <GitHubContributions githubUrl={githubUrl} />
+            <Contact email={profile.email} socialLinks={socialLinks} />
+          </main>
+          <Footer socialLinks={socialLinks} email={profile.email} />
+        </div>
+      </div>
+
+      {activeProject && (
+        <ProjectModal project={activeProject} image={getImage(activeProject.image)} onClose={closeProject} />
+      )}
     </>
   )
 }

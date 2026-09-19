@@ -1,131 +1,81 @@
 import { useEffect, useState } from 'react'
-import { Menu, Moon, Sun, X } from 'lucide-react'
+import { CircleUserRound, FolderKanban, Home, Mail, Moon, Sun } from 'lucide-react'
+import { SiGithub } from 'react-icons/si'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from '@/components/ui/navigation-menu'
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
 
 const navItems = [
-  { label: 'Home', target: 'home' },
-  { label: 'About', target: 'about' },
-  { label: 'Skills', target: 'skills' },
-  { label: 'Projects', target: 'projects' },
-  { label: 'Experience', target: 'experience' },
-  { label: 'Contact', target: 'contact' },
+  { label: 'Home', target: 'home', icon: Home },
+  { label: 'About', target: 'about', icon: CircleUserRound },
+  { label: 'Projects', target: 'projects', icon: FolderKanban },
+  { label: 'GitHub', target: 'github-activity', icon: SiGithub },
+  { label: 'Contact', target: 'contact', icon: Mail },
 ]
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
-    const onScroll = () => {
-      const sections = navItems
+    const updateActiveSection = () => {
+      if (window.scrollY < 80) {
+        setActiveSection('home')
+        return
+      }
+
+      const current = navItems
+        .filter(({ target }) => target !== 'home')
         .map(({ target }) => document.getElementById(target))
         .filter(Boolean)
         .map((section) => ({ id: section.id, top: section.getBoundingClientRect().top }))
-        .sort((a, b) => a.top - b.top)
+        .filter(({ top }) => top <= 180)
+        .at(-1)
 
-      const current = sections.filter(({ top }) => top <= 130).at(-1) || sections[0]
-      if (current) setActiveSection(current.id)
+      setActiveSection(current?.id || 'home')
     }
 
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    updateActiveSection()
+    window.addEventListener('scroll', updateActiveSection, { passive: true })
+    return () => window.removeEventListener('scroll', updateActiveSection)
   }, [])
 
   useEffect(() => {
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', resolvedTheme === 'light' ? '#f4f5f2' : '#101216')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      'content',
+      resolvedTheme === 'light' ? '#f5f4f1' : '#090909',
+    )
   }, [resolvedTheme])
 
-  const handleNavigation = (target) => {
-    setActiveSection(target)
-    setIsOpen(false)
-  }
-
-  const navigationLinks = navItems.map(({ label, target }) => (
-    <a
-      key={target}
-      href={`#${target}`}
-      className={activeSection === target ? 'is-active' : ''}
-      aria-current={activeSection === target ? 'page' : undefined}
-      onClick={() => handleNavigation(target)}
-    >
-      {label}
-    </a>
-  ))
-
   return (
-    <header className="site-header">
-      <nav className="nav-shell" aria-label="Primary navigation">
-        <div className="nav-actions">
-          <NavigationMenu viewport={false} className="desktop-navigation">
-            <NavigationMenuList className="nav-links">
-              {navItems.map(({ label, target }) => (
-                <NavigationMenuItem key={target}>
-                  <NavigationMenuLink
-                    href={`#${target}`}
-                    active={activeSection === target}
-                    className={activeSection === target ? 'is-active' : ''}
-                    aria-current={activeSection === target ? 'page' : undefined}
-                    onClick={() => handleNavigation(target)}
-                  >
-                    {label}
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-          <Button
-            className="theme-toggle"
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-            aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
-            aria-pressed={resolvedTheme === 'light'}
-            title={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
+    <div className="profile-navigation">
+      <nav aria-label="Primary navigation">
+        {navItems.map(({ label, target, icon: Icon }, index) => (
+          <a
+            key={target}
+            href={`#${target}`}
+            className={activeSection === target ? 'is-active' : ''}
+            aria-current={activeSection === target ? 'page' : undefined}
+            onClick={() => setActiveSection(target)}
           >
-            <Sun className="theme-icon theme-icon--sun" aria-hidden="true" />
-            <Moon className="theme-icon theme-icon--moon" aria-hidden="true" />
-          </Button>
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <Button className="menu-button" type="button" variant="ghost" size="icon" aria-label="Open navigation">
-                <Menu aria-hidden="true" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent className="mobile-nav-sheet" showCloseButton={false} aria-describedby="mobile-nav-description">
-              <SheetHeader className="mobile-nav-header">
-                <div>
-                  <SheetTitle>Navigate</SheetTitle>
-                  <SheetDescription id="mobile-nav-description">Explore John Paul&apos;s portfolio.</SheetDescription>
-                </div>
-                <SheetClose asChild>
-                  <Button type="button" variant="ghost" size="icon" aria-label="Close navigation"><X aria-hidden="true" /></Button>
-                </SheetClose>
-              </SheetHeader>
-              <div id="mobile-navigation" className="mobile-nav-links">{navigationLinks}</div>
-            </SheetContent>
-          </Sheet>
-        </div>
+            <span><Icon aria-hidden="true" />{label}</span>
+            <kbd>{index + 1}</kbd>
+          </a>
+        ))}
       </nav>
-    </header>
+      <div className="rail-controls">
+        <span>© {new Date().getFullYear()}</span>
+        <Button
+          className="rail-theme-toggle"
+          type="button"
+          variant="ghost"
+          size="icon-sm"
+          onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+          aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
+        >
+          {resolvedTheme === 'light' ? <Moon aria-hidden="true" /> : <Sun aria-hidden="true" />}
+        </Button>
+      </div>
+    </div>
   )
 }
 
