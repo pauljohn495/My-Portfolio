@@ -225,6 +225,7 @@ html[data-theme="light"] .theme-icon--moon { opacity: 1; transform: rotate(0) sc
 .carousel-progress span { display: block; height: 100%; background: var(--accent-hover); transition: width .45s ease; }
 
 .github-section { padding-top: 0; border-bottom: 1px solid var(--border); background: var(--surface); }
+.github-section--embedded { padding-bottom: 0; border-bottom: 0; }
 .github-activity-shell { padding-top: clamp(90px, 9vw, 132px); border-top: 1px solid var(--border); }
 .github-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; }
 .github-heading .section-heading { margin-bottom: 0; }

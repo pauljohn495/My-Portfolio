@@ -6,7 +6,6 @@ import Hero from '../components/Hero'
 import About from '../components/About'
 import Skills from '../components/Skills'
 import Projects from '../components/Projects'
-import GitHubContributions from '../components/GitHubContributions'
 import ProjectModal from '../components/ProjectModal'
 import Journey from '../components/Journey'
 import CertificateModal from '../components/CertificateModal'
@@ -94,8 +93,7 @@ function Home() {
         <Hero profile={profile} socialLinks={socialLinks} />
         <About projectCount={personalProjects.length} technologyCount={technologyCount} certificateCount={certificates.length} />
         <Skills techStack={techStack} />
-        <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} />
-        <GitHubContributions githubUrl={githubUrl} />
+        <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} githubUrl={githubUrl} />
         <Journey timeline={experienceTimeline} certificates={certificates} getImage={getImage} onCertificateOpen={setActiveCertificate} />
         <Process />
         <Contact email={profile.email} socialLinks={socialLinks} />

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { animate, onScroll, stagger } from 'animejs'
 import SectionHeading from './SectionHeading'
 import ProjectCard from './ProjectCard'
+import GitHubContributions from './GitHubContributions'
 import {
   Carousel,
   CarouselContent,
@@ -10,7 +11,7 @@ import {
   CarouselPrevious,
 } from './ui/carousel'
 
-function Projects({ projects, getImage, onOpen }) {
+function Projects({ projects, getImage, onOpen, githubUrl }) {
   const carouselRef = useRef(null)
   const [carouselApi, setCarouselApi] = useState(null)
   const [activeIndex, setActiveIndex] = useState(0)
@@ -72,6 +73,8 @@ function Projects({ projects, getImage, onOpen }) {
         </CarouselContent>
         <div className="carousel-progress" aria-hidden="true"><span style={{ width: `${((activeIndex + 1) / slideCount) * 100}%` }} /></div>
       </Carousel>
+
+      <GitHubContributions githubUrl={githubUrl} embedded />
     </section>
   )
 }

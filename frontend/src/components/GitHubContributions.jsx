@@ -31,7 +31,7 @@ function GitHubActivitySkeleton() {
   )
 }
 
-function GitHubContributions({ githubUrl }) {
+function GitHubContributions({ githubUrl, embedded = false }) {
   const [activity, setActivity] = useState(null)
   const [status, setStatus] = useState('loading')
 
@@ -57,7 +57,7 @@ function GitHubContributions({ githubUrl }) {
   }, [])
 
   return (
-    <section className="section github-section" id="github-activity" aria-labelledby="github-activity-title">
+    <section className={`section github-section${embedded ? ' github-section--embedded' : ''}`} id="github-activity" aria-labelledby="github-activity-title">
       <div className="page-shell github-activity-shell reveal">
         <div className="github-heading">
           <SectionHeading eyebrow="Open source" title="GitHub Activity" copy="A snapshot of what I’ve been building and contributing to." />
