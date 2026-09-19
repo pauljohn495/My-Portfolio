@@ -1,21 +1,19 @@
-import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import ProjectCard from './ProjectCard'
 
-function Projects({ projects, getImage, onOpen }) {
-  const [showAll, setShowAll] = useState(false)
-  const visibleProjects = showAll ? projects : projects.slice(0, 2)
+function Projects({ projects, getImage, onOpen, preview = false, onViewAll, children }) {
+  const visibleProjects = preview ? projects.slice(0, 2) : projects
 
   return (
-    <section className="content-section projects-section" id="projects" aria-labelledby="projects-title">
+    <section className="content-section projects-section" id={preview ? 'recent-projects' : 'projects'} aria-labelledby={preview ? 'recent-projects-title' : 'projects-title'}>
       <div className="section-heading-row">
         <div>
           <p className="section-label">Selected work</p>
-          <h2 id="projects-title">Recent Projects</h2>
+          <h2 id={preview ? 'recent-projects-title' : 'projects-title'}>{preview ? 'Recent Projects' : 'Projects'}</h2>
         </div>
-        {projects.length > 2 && (
-          <button className="text-link" type="button" onClick={() => setShowAll((current) => !current)} aria-expanded={showAll}>
-            {showAll ? 'Show less' : 'See all'} <ArrowRight aria-hidden="true" />
+        {preview && (
+          <button className="text-link" type="button" onClick={onViewAll}>
+            See all <ArrowRight aria-hidden="true" />
           </button>
         )}
       </div>
@@ -31,6 +29,7 @@ function Projects({ projects, getImage, onOpen }) {
           />
         ))}
       </div>
+      {children}
     </section>
   )
 }

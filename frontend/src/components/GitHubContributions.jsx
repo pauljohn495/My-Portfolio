@@ -49,7 +49,7 @@ function GitHubContributions({ githubUrl }) {
   }, [])
 
   return (
-    <section className="content-section github-section" id="github-activity" aria-labelledby="github-activity-title">
+    <section className="github-section" id="github-activity" aria-labelledby="github-activity-title">
       <div className="section-heading-row github-heading">
         <div>
           <p className="section-label">Open source</p>

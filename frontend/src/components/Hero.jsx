@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
-import profileImage from '../assets/portrait.jpg'
+import profileImage from '../assets/2x2.jpg'
 
 function Hero({ profile, socialLinks }) {
   const githubUrl = socialLinks.find((link) => link.name === 'GitHub')?.url || 'https://github.com/'
