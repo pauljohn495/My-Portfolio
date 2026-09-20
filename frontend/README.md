@@ -1,6 +1,6 @@
 # John Paul Tagalog — Portfolio
 
-A responsive developer portfolio built with React, Vite, Tailwind CSS, shadcn/ui, and Anime.js, with persistent light and dark themes.
+A responsive developer portfolio built with React, Vite, Tailwind CSS, and focused shadcn/ui primitives. It includes persistent light and dark themes, accessible project and certificate dialogs, and live GitHub contribution data.
 
 ## Local development
 
@@ -26,14 +26,14 @@ Use `npx vercel dev` when testing the frontend and Vercel Function together loca
 
 Successful contribution responses are cached at Vercel’s edge for one hour and can be served stale while they revalidate in the background.
 
+## Vercel deployment
+
+Set the Vercel project’s Root Directory to `frontend`. Vercel detects Vite automatically, runs `npm install` from the lockfile, builds the frontend, and deploys `api/github-contributions.js` as `/api/github-contributions`. Configure both GitHub environment variables before deploying.
+
 ## Updating portfolio content
 
-Projects, skills, certificates, social links, and journey entries are kept in `src/data/portfolioData.json`. Add the relevant image to `src/assets`, import it in `src/pages/home.jsx`, and map its data path in `assetImages` when adding a new visual.
+Projects, skills, certificates, and social links are kept in `src/data/portfolioData.json`. Add the relevant image to `src/assets`, import it in `src/pages/home.jsx`, and map its data path in `assetImages` when adding a new visual.
 
 The reusable page sections are in `src/components`, while global design tokens and responsive styles are in `src/index.css`.
 
-Anime.js powers the coordinated hero and project-carousel entrance sequences. Motion is automatically skipped when a visitor enables reduced-motion preferences. Theme selection follows the system preference on first visit and is stored locally after the visitor uses the navigation toggle.
-
-## Contact form
-
-The form validates in the browser and prepares an email in the visitor’s configured email application. It does not claim a message was sent without a server-side form provider.
+Page changes use the browser View Transition API when available and fall back to a CSS entrance animation. Motion is automatically minimized when a visitor enables reduced-motion preferences. Theme selection follows the system preference on first visit and is stored locally after the visitor uses the navigation toggle.

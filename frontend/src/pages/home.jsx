@@ -1,46 +1,46 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import portfolioData from '../data/portfolioData.json'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import About from '../components/About'
-import Skills from '../components/Skills'
-import Credentials from '../components/Credentials'
 import Projects from '../components/Projects'
 import GitHubContributions from '../components/GitHubContributions'
-import ProjectModal from '../components/ProjectModal'
-import CertificateModal from '../components/CertificateModal'
-import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import projectImage from '../assets/project.jpg'
+import aiCertificate from '../assets/ai certificate.png'
 import introductionCertificate from '../assets/introduction.jpeg'
 import routingCertificate from '../assets/routing.jpeg'
 
-const validViews = new Set(['home', 'about', 'projects', 'contact'])
+const SkillsCredentials = lazy(() => import('../components/SkillsCredentials'))
+const ProjectModal = lazy(() => import('../components/ProjectModal'))
+const CertificateModal = lazy(() => import('../components/CertificateModal'))
+const Contact = lazy(() => import('../components/Contact'))
+
+const validViews = new Set(['home', 'skills', 'projects', 'contact'])
 const assetImages = {
   '../assets/project.jpg': projectImage,
+  '../assets/ai certificate.png': aiCertificate,
   '../assets/introduction.jpeg': introductionCertificate,
   '../assets/routing.jpeg': routingCertificate,
+}
+const { profile, techStack, personalProjects, socialLinks, certificates } = portfolioData
+const githubUrl = socialLinks.find((link) => link.name === 'GitHub')?.url || 'https://github.com/'
+
+function getImage(path) {
+  return assetImages[path] || projectImage
 }
 
 function getInitialView() {
   const hashView = window.location.hash.slice(1)
+  if (hashView === 'about') return 'skills'
   return validViews.has(hashView) ? hashView : 'home'
 }
 
 function Home() {
-  const { profile, techStack, personalProjects, socialLinks, certificates } = portfolioData
   const [activeView, setActiveView] = useState(getInitialView)
   const [activeProject, setActiveProject] = useState(null)
   const [activeCertificate, setActiveCertificate] = useState(null)
-
-  const getImage = useCallback((path) => assetImages[path] || projectImage, [])
-  const closeProject = useCallback(() => setActiveProject(null), [])
-  const closeCertificate = useCallback(() => setActiveCertificate(null), [])
-  const githubUrl = useMemo(
-    () => socialLinks.find((link) => link.name === 'GitHub')?.url || 'https://github.com/',
-    [socialLinks],
-  )
 
   const transitionToView = useCallback((view) => {
     if (!validViews.has(view)) return
@@ -83,36 +83,40 @@ function Home() {
 
         <div className="content-column">
           <main id="main-content" className="view-panel" key={activeView}>
-            {activeView === 'home' && (
-              <>
-                <About profile={profile} id="home-overview" />
-                <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} preview onViewAll={() => navigateTo('projects')}>
-                  <GitHubContributions githubUrl={githubUrl} />
-                </Projects>
-              </>
-            )}
+            <Suspense fallback={null}>
+              {activeView === 'home' && (
+                <>
+                  <About profile={profile} id="about" socialLinks={socialLinks} />
+                  <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} preview onViewAll={() => navigateTo('projects')}>
+                    <GitHubContributions githubUrl={githubUrl} />
+                  </Projects>
+                </>
+              )}
 
-            {activeView === 'about' && (
-              <About profile={profile} socialLinks={socialLinks}>
-                <Skills techStack={techStack} />
-                <Credentials certificates={certificates} getImage={getImage} onOpen={setActiveCertificate} />
-              </About>
-            )}
+              {activeView === 'skills' && (
+                <SkillsCredentials
+                  techStack={techStack}
+                  certificates={certificates}
+                  getImage={getImage}
+                  onCertificateOpen={setActiveCertificate}
+                />
+              )}
 
-            {activeView === 'projects' && (
-              <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject}>
-                <GitHubContributions githubUrl={githubUrl} />
-              </Projects>
-            )}
+              {activeView === 'projects' && (
+                <Projects projects={personalProjects} getImage={getImage} onOpen={setActiveProject} />
+              )}
 
-            {activeView === 'contact' && <Contact email={profile.email} socialLinks={socialLinks} />}
+              {activeView === 'contact' && <Contact email={profile.email} socialLinks={socialLinks} />}
+            </Suspense>
           </main>
           <Footer socialLinks={socialLinks} email={profile.email} />
         </div>
       </div>
 
-      {activeProject && <ProjectModal project={activeProject} image={getImage(activeProject.image)} onClose={closeProject} />}
-      {activeCertificate && <CertificateModal certificate={activeCertificate} onClose={closeCertificate} />}
+      <Suspense fallback={null}>
+        {activeProject && <ProjectModal project={activeProject} image={getImage(activeProject.image)} onClose={() => setActiveProject(null)} />}
+        {activeCertificate && <CertificateModal certificate={activeCertificate} onClose={() => setActiveCertificate(null)} />}
+      </Suspense>
     </>
   )
 }

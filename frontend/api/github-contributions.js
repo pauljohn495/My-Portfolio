@@ -6,8 +6,6 @@ const contributionQuery = `
     user(login: $username) {
       login
       url
-      followers { totalCount }
-      repositories(privacy: PUBLIC) { totalCount }
       contributionsCollection(from: $from, to: $to) {
         contributionCalendar {
           totalContributions
@@ -23,7 +21,6 @@ const contributionQuery = `
               contributionCount
               contributionLevel
               date
-              weekday
             }
           }
         }
@@ -90,11 +87,8 @@ export default async function handler(request, response) {
       username: user.login,
       profileUrl: user.url,
       totalContributions: calendar.totalContributions,
-      publicRepositories: user.repositories.totalCount,
-      followers: user.followers.totalCount,
       months: calendar.months,
       weeks: calendar.weeks,
-      generatedAt: new Date().toISOString(),
     })
   } catch (error) {
     console.error('Unable to load GitHub contribution data.', error)

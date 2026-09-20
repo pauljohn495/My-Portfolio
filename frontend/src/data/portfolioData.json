@@ -3,27 +3,20 @@
     "name": "John Paul T. Tagalog",
     "shortName": "John Paul",
     "email": "johnpaultagalog@gmail.com",
-    "title": "Software Developer",
-    "intro": "I build practical, user-friendly applications while growing my skills across modern web and software development."
+    "title": "Software Developer"
   },
   "techStack": {
     "Frontend": ["React", "JavaScript", "Tailwind CSS", "ShadCN UI", "HTML", "CSS", "FrankenUI"],
     "Backend & Database": ["Node.js", "Express", "MongoDB", "MySQL", "PHP", "Supabase"],
     "Cloud & Tools": ["Vercel", "Netlify", "AWS", "Render", "GitHub"]
   },
-  "experienceTimeline": [
-    { "date": "2025", "title": "3rd Year College — 2nd Semester", "description": "Developed a full-stack application for Red Cross using React and Node.js." },
-    { "date": "2025", "title": "3rd Year College — 1st Semester", "description": "Developed a full-stack application using React and Node.js." },
-    { "date": "2024", "title": "2nd Year College — 2nd Semester", "description": "Developed a full-stack application using PHP and MySQL." },
-    { "date": "2023", "title": "2nd Year College — 1st Semester", "description": "Developed a simple 2D platformer game using Java." },
-    { "date": "2022", "title": "1st Year College", "description": "Developed a simple C program for the SSC." }
-  ],
   "socialLinks": [
     { "name": "GitHub", "url": "https://github.com/pauljohn495" },
     { "name": "LinkedIn", "url": "https://www.linkedin.com/in/john-paul-tagalog-2168873a3" },
     { "name": "Facebook", "url": "https://www.facebook.com/johnpaul.terigtagalog" }
   ],
   "certificates": [
+    { "title": "Introduction to AI Literacy and Responsible Use", "issuer": "CHED ACHIEVE · Mapúa University", "image": "../assets/ai certificate.png" },
     { "title": "CCNA: Introduction to Networks", "issuer": "Cisco Networking Academy", "image": "../assets/introduction.jpeg" },
     { "title": "CCNA: Switching, Routing", "issuer": "Cisco Networking Academy", "image": "../assets/routing.jpeg" }
   ],
@@ -34,8 +27,7 @@
       "role": "Full-stack Development",
       "description": "A blood management system with predictive analytics and prescriptive insights for Red Cross operations.",
       "image": "../assets/project.jpg",
-      "stack": ["React", "MySQL", "Tailwind CSS", "Node.js"],
-      "featured": true
+      "stack": ["React", "MySQL", "Tailwind CSS", "Node.js"]
     },
     {
       "title": "BukSU SSC Student Information & Publication Portal",

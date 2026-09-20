@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 
 const navItems = [
   { label: 'Home', target: 'home', icon: Home },
-  { label: 'About', target: 'about', icon: CircleUserRound },
+  { label: 'Skills & Credentials', target: 'skills', icon: CircleUserRound },
   { label: 'Projects', target: 'projects', icon: FolderKanban },
   { label: 'Contact', target: 'contact', icon: Mail },
 ]
@@ -16,7 +16,7 @@ function Navbar({ activeView, onNavigate }) {
   useEffect(() => {
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       'content',
-      resolvedTheme === 'light' ? '#f5f4f1' : '#090909',
+      resolvedTheme === 'light' ? '#f5f4f1' : '#070809',
     )
   }, [resolvedTheme])
 

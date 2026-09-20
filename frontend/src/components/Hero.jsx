@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
-import profileImage from '../assets/2x2.jpg'
+import profileImage from '../assets/2x2.png'
 
 function Hero({ profile, socialLinks }) {
   const githubUrl = socialLinks.find((link) => link.name === 'GitHub')?.url || 'https://github.com/'
@@ -7,7 +7,7 @@ function Hero({ profile, socialLinks }) {
 
   return (
     <section className="profile-intro" id="home" aria-labelledby="profile-name">
-      <img className="profile-avatar" src={profileImage} alt={`${profile.name} portrait`} width="112" height="112" fetchPriority="high" />
+      <img className="profile-avatar" src={profileImage} alt={`${profile.name} portrait`} width="240" height="300" decoding="async" fetchPriority="high" />
       <div className="profile-identity">
         <h1 id="profile-name">{profile.shortName}</h1>
         <a className="profile-handle" href={githubUrl} target="_blank" rel="noreferrer">

@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 
 function ProjectModal({ project, image, onClose }) {
@@ -13,7 +12,7 @@ function ProjectModal({ project, image, onClose }) {
             <DialogDescription id="project-modal-description" className="modal-description">{project.description}</DialogDescription>
           </DialogHeader>
           <div className="modal-detail-grid"><div><span>My role</span><strong>{project.role}</strong></div><div><span>Project type</span><strong>{project.type}</strong></div></div>
-          <div className="modal-stack"><h3>Technology stack</h3><div>{project.stack.map((tech) => <Badge variant="outline" className="project-badge" key={tech}>{tech}</Badge>)}</div></div>
+          <div className="modal-stack"><h3>Technology stack</h3><div>{project.stack.map((tech) => <span className="project-badge" key={tech}>{tech}</span>)}</div></div>
           <p className="modal-note">Source and live-demo links are not published in the current portfolio.</p>
         </div>
       </DialogContent>

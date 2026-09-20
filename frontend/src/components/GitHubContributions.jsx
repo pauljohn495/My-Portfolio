@@ -39,7 +39,6 @@ function GitHubContributions({ githubUrl }) {
         setStatus('success')
       } catch (error) {
         if (error.name === 'AbortError') return
-        console.error('Unable to display GitHub activity.', error)
         setStatus('error')
       }
     }
